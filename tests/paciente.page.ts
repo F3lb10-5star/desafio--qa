@@ -31,13 +31,11 @@ export class Paciente {
     this.modalInput = page.getByLabel('Modalidades');
     this.confirmButton = page.getByRole('button', { name: 'Confirmar' });
     this.successAlertPatient = page.getByText('Paciente registrado com sucesso');
-    this.successAlertExam = page.getByText('Exame criado com sucesso');
-    // this.successDeletePatient = page.getByText('/removido com sucesso/i'); //  getByText(/removido com sucesso/);
+    this.successAlertExam = page.getByText('Exame criado com sucesso');  
     this.errorMessage = page.locator('text=Campo obrigatório');
     this.errorAlert = page.locator('text=Preencha todos os campos obrigatórios');
     this.addExamButton = page.locator('button:has(mat-icon:text("add_box"))');
     this.editPatientButton = page.locator('button:has(mat-icon:text("edit"))')
-    //  this.patientName = page.getByRole('row', {name: '' });
   }
 
   async createPatient(name: string, document: string) {
