@@ -9,7 +9,7 @@ import { generate } from 'gerador-validador-cpf'
 test.describe('Patient management', () => {
   const cpf = generate();
   const randomName = faker.person.fullName();
-  const randoDocument = cpf;
+  const randomDocument = cpf;
   let paciente: Paciente;
 
 
@@ -21,11 +21,11 @@ test.describe('Patient management', () => {
   })
 
   test('to create a new paciente - happy path', async ({ page }) => {    
-    await paciente.createPatient(randomName ,randoDocument)      
+    await paciente.createPatient(randomName ,randomDocument)      
   })
 
   test('to create a new paciente - sad path - without name', async ({ page }) => {
-    await paciente.createPatient('',randoDocument)
+    await paciente.createPatient('',randomDocument)
 
   })
 
@@ -47,22 +47,26 @@ test.describe('Patient management', () => {
   })
 
   test('to edit a patient - happy path', async ({ page }) => {
-    await paciente.editPatient(randomName, randoDocument)   
+    await paciente.editPatient(randomName, randomDocument)   
   })
 
-  test('to edit a patient - sad path', async ({ page }) => {
+  test('to edit a patient - sad path without name', async ({ page }) => {
+    await paciente.editPatient('', randomDocument)
+  })
 
+  test('to edit a patient - happy path without document', async ({ page }) => {
+    await paciente.editPatient(randomName, '');
+  })
+
+  test('to edit a patient - happy path without name and document', async ({ page }) => {
+    await paciente.editPatient('', '')
   })
 
   test('to delete a patient - happy path', async ({ page }) => {
-
-  })
-
-  test('to delete a patient - sad path', async ({ page }) => {
-
+    await paciente.deletePatient()
   })
 
   test('to search a patient - happy path', async ({ page }) => {
-
+    await paciente.searchRandomPatient();
   })
 })
